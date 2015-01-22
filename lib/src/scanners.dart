@@ -80,9 +80,17 @@ getDeclarationsFromClassIf(ClassMirror cm, _IfDeclarationFunct ifDeclarationFunc
 Map<Symbol, MethodMirror> getPublicMethodsFromClass(ClassMirror cm) => 
     getDeclarationsFromClassIf(cm, (dm) => !dm.isPrivate && dm is MethodMirror && (dm as MethodMirror).isRegularMethod);
 
-/// Get the list of public [VariableMirror] from [ClassMirror] [cm]
+/// Get the list of public variables and setters from [ClassMirror] [cm]
+Map<Symbol, DeclarationMirror> getPublicVariablesAndSettersFromClass(ClassMirror cm) =>
+    getDeclarationsFromClassIf(cm, (dm) => !dm.isPrivate && dm is VariableMirror || dm is MethodMirror && dm.isSetter);
+
+/// Get the list of public variables and setters from [ClassMirror] [cm]
+Map<Symbol, DeclarationMirror> getPublicVariablesAndGettersFromClass(ClassMirror cm) =>
+    getDeclarationsFromClassIf(cm, (dm) => !dm.isPrivate && dm is VariableMirror || dm is MethodMirror && dm.isGetter);
+
+/// Get the list of public variables [VariableMirror] from [ClassMirror] [cm]
 Map<Symbol, VariableMirror> getPublicVariablesFromClass(ClassMirror cm)=> 
-    getDeclarationsFromClassIf(cm, (dm) => !dm.isPrivate && dm is VariableMirror || (dm is MethodMirror && dm.isGetter)); 
+    getDeclarationsFromClassIf(cm, (dm) => !dm.isPrivate && dm is VariableMirror); 
 
 /// Gets the object that extends the [injectableCm] from [declarationCms]
 Object getObjectThatExtend(ClassMirror injectableCm, Iterable<DeclarationMirror> declarationCms) {
