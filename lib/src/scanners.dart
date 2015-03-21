@@ -4,18 +4,35 @@ part of drails_commons;
 class GetValueOfAnnotation<T> {
  final _iat = new IsAnnotation<T>();
   ///  Get the Instance of the Annotation of type [T] from the reflected annotated object [im]
-  T fromInstance(InstanceMirror im) => fromAnnotations(im.type.metadata);
+  T fromInstance(InstanceMirror im) => _fromAnnotations(im.type.metadata);
 
   ///  Get the Instance of the Annotation of type [T] from the reflected annotated declaration (method or property) [obj]
-  T fromDeclaration(DeclarationMirror dm) => fromAnnotations(dm.metadata);
+  T fromDeclaration(DeclarationMirror dm) => _fromAnnotations(dm.metadata);
 
   /// Get the Instance of the Annotation of type [T] from the list of annotations' [InstanceMirror]s
-  T fromAnnotations(List<InstanceMirror> ams) {
+  T _fromAnnotations(List<InstanceMirror> ams) {
     if (_iat.anyOf(ams))
       return ams.singleWhere(_iat._isType).reflectee as T;
     return null;
   }
+}
 
+
+///  Get list of Values of annotations of Type [T] on [InstanceMirror]s and [DeclarationMirror]s
+class GetValuesOfAnnotations<T> {
+ final _iat = new IsAnnotation<T>();
+  ///  Get the list of values of the Annotation of type [T] from the reflected annotated object [im]
+ Iterable<T> fromInstance(InstanceMirror im) => _fromAnnotations(im.type.metadata);
+
+  ///  Get the list of values of the Annotation of type [T] from the reflected annotated declaration (method or property) [obj]
+  Iterable<T> fromDeclaration(DeclarationMirror dm) => _fromAnnotations(dm.metadata);
+
+  /// Get the list of values of the Annotation of type [T] from the list of annotations' [InstanceMirror]s
+  Iterable<T> _fromAnnotations(List<InstanceMirror> ams) {
+    if (_iat.anyOf(ams))
+      return ams.where(_iat._isType).map((im) => im.reflectee as T);
+    return null;
+  }
 }
 
 ///  Check if Annotation is on [InstanceMirror] or [DeclarationMirror]
