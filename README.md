@@ -8,14 +8,14 @@ Examples:
 
 ```Dart
 //Get the value of the annotation of type Annotation1 that is over the class of instanceMirro1
-var annotationValue = GetValueOfAnnotation<Annotation1>().fromInstance(instanceMirro1);
+var annotationValueOverClass = new GetValueOfAnnotation<Annotation1>().fromInstance(instanceMirro1);
 
 //Get the value of the annotation of type Annotation1 that is over the class of declarationMirror1
-var annotationValue = GetValueOfAnnotation<Annotation1>().fromDeclaration(declarationMirror1);
+var annotationValueOverDeclaration = new GetValueOfAnnotation<Annotation1>().fromDeclaration(declarationMirror1);
 
 //Get the list of values of the annotation of type Annotation1 that is over the class of instanceMirro1
-var annotationValue = GetValuesOfAnnotations<Annotation1>().fromInstance(instanceMirro1);
+var annotationValuesOverInstance = new GetValuesOfAnnotations<Annotation1>().fromInstance(instanceMirro1);
 
 //Get the value of the annotation of type Annotation1 that is over the class of declarationMirror1
-var annotationValue = GetValuesOfAnnotations<Annotation1>().fromDeclaration(declarationMirror1);
+var annotationValuesOverDeclaration = new GetValuesOfAnnotations<Annotation1>().fromDeclaration(declarationMirror1);
 ```
