@@ -2,7 +2,7 @@
 
 [![Build Status](https://drone.io/github.com/luisvt/drails_commons/status.png)](https://drone.io/github.com/luisvt/drails_commons/latest)
 
-This library mantains common functions and variables usful for drails_di, dson and drails.
+This library maintains common functions and variables useful for drails_di, dson and drails.
 
 Examples:
 
