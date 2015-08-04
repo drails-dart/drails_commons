@@ -193,7 +193,7 @@ Object getObjectThatExtend(ClassMirror injectableCm, Iterable<DeclarationMirror>
  */
 int _getExtensionLevel(ClassMirror injectableCm, ClassMirror declarationCm, int counter) {
 
-  if(declarationCm.simpleName == 'Object') {
+  if(declarationCm.simpleName == SN_OBJECT) {
     return counter = 0;
   }
 
