@@ -4,8 +4,8 @@ author: Luis Vargas <luisvargastijerino@gmail.com>
 description: Package that contains some utilities classes, methods, and global constants shared by drails, drails_di, and dson.
 homepage: https://github.com/luisvt/drails_commons
 environment:
-  sdk: '>=1.6.0'
+  sdk: '>=1.8.0'
 dependencies:
   reflectable: '^0.1.0'
 dev_dependencies:
-  unittest: any
+  unittest: '^0.12.0'
