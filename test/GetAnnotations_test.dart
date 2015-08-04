@@ -37,7 +37,7 @@ class ObjectWithMethodsWithAnnotations {
 
 main() {
   group('Get all annotations ->', () {
-    solo_test('from class', () {
+    test('from class', () {
       expect(new GetValuesOfAnnotations().fromInstance(reflectable.reflect(new ObjectWithoutAnnotations())), [reflectable]);
       expect(new GetValuesOfAnnotations<Annotation1>().fromInstance(reflectable.reflect(new ObjectWithAnnotations())), [const Annotation1(), const Annotation1()]);
       expect(new GetValuesOfAnnotations<Annotation2>().fromInstance(reflectable.reflect(new ObjectWithAnnotations())), [const Annotation2()]);
