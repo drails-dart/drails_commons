@@ -1,6 +1,6 @@
 library GetAnnotations_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:drails_commons/drails_commons.dart';
 import "package:reflectable/reflectable.dart";
 
