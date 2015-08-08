@@ -61,7 +61,9 @@ class IsAnnotation<T> {
 class GetDeclarationsAnnotatedWith<T, DM> {
   ///  Get the iterable of [DeclarationMirror] that are annotated with [T]
   Iterable<DM> from(InstanceMirror im, Reflectable reflectable) =>
-      getDeclarationsFromClassIf(im.type, reflectable, (dm) => dm is DM && dm.metadata.any((am) => am.reflectee is T)).values;
+      getDeclarationsFromClassIf(im.type, reflectable, (dm) =>
+        dm is DM && dm.metadata.any((am) => am is T))
+      .values;
 
 
 }
