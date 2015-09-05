@@ -5,7 +5,16 @@ import 'package:drails_commons/drails_commons.dart';
 import "package:reflectable/reflectable.dart";
 
 
-const reflectable = const Reflectable(invokingCapability, metadataCapability);
+const reflectable = const MyReflectable();
+
+class MyReflectable extends  Reflectable {
+  const MyReflectable() : super(
+      invokingCapability,
+      metadataCapability,
+      typeCapability,
+      typeRelationsCapability,
+      declarationsCapability);
+}
 
 class Annotation1 {
   const Annotation1();

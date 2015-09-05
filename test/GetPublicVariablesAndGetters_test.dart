@@ -5,15 +5,24 @@ import 'package:drails_commons/drails_commons.dart';
 import "package:reflectable/reflectable.dart";
 
 
-const reflectable = const Reflectable(invokingCapability, metadataCapability);
+const myReflectable = const MyReflectable();
 
-@reflectable
+class MyReflectable extends  Reflectable {
+  const MyReflectable() : super(
+      invokingCapability,
+      metadataCapability,
+      typeCapability,
+      typeRelationsCapability,
+      declarationsCapability);
+}
+
+@myReflectable
 class ObjectWithMembers {
   String name;
   int age;
 }
 
-@reflectable
+@myReflectable
 class ExtendedObject extends ObjectWithMembers {
   String myProp;
 }
@@ -21,11 +30,11 @@ class ExtendedObject extends ObjectWithMembers {
 main() {
   group('Get public Variables and Getters ->', (){
     test('test1', () {
-      expect(getPublicVariablesAndGettersFromClass(reflectable.reflectType(ObjectWithMembers), reflectable).length, 2);
+      expect(getPublicVariablesAndGettersFromClass(myReflectable.reflectType(ObjectWithMembers), myReflectable).length, 2);
     });
 
     test('test2', () {
-      expect(getPublicVariablesAndGettersFromClass(reflectable.reflectType(ExtendedObject), reflectable).length, 3);
+      expect(getPublicVariablesAndGettersFromClass(myReflectable.reflectType(ExtendedObject), myReflectable).length, 3);
     });
   });
 }
