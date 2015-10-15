@@ -9,6 +9,7 @@ const myReflectable = const MyReflectable();
 
 class MyReflectable extends  Reflectable {
   const MyReflectable() : super(
+      superclassQuantifyCapability,
       invokingCapability,
       metadataCapability,
       typeCapability,

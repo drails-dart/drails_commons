@@ -1,12 +1,12 @@
 name: drails_commons
-version: 0.0.5+2
+version: 0.0.6
 author: Luis Vargas <luisvargastijerino@gmail.com>
 description: Package that contains some utilities classes, methods, and global constants shared by drails, drails_di, and dson.
 homepage: https://github.com/luisvt/drails_commons
 environment:
   sdk: '>=1.8.0'
 dependencies:
-  reflectable: '>=0.1.0 <0.3.0'
+  reflectable: '>=0.1.5 <0.4.0'
 #  reflectable:
 #    path: ../reflectable/reflectable
 dev_dependencies:
