@@ -123,21 +123,23 @@ class GetVariablesAnnotatedWith<T> {
 typedef bool _IfDeclarationFunct(DeclarationMirror dm);
 
 /// Get the List of [DeclarationMirror]s from [ClassMirror] cm if the [ifDeclarationFunct] is true
-getDeclarationsFromClassIf(ClassMirror cm, Reflectable reflectable, _IfDeclarationFunct ifDeclarationFunct) {
+Map<String, dynamic> getDeclarationsFromClassIf(ClassMirror cm, Reflectable reflectable, _IfDeclarationFunct ifDeclarationFunct) {
 
   var dms = {};
 
-  if (cm.superclass.simpleName != 'Object') {
+  try {
     dms.addAll(getDeclarationsFromClassIf(cm.superclass, reflectable, ifDeclarationFunct));
+  } catch(e) {
+//    not sure what to do here
+  } finally {
+    cm.declarations.forEach((symbol, dm) {
+      if(ifDeclarationFunct(dm)) {
+        dms.putIfAbsent(symbol, () => dm);
+      }
+    });
+
+    return dms;
   }
-
-  cm.declarations.forEach((symbol, dm) {
-    if(ifDeclarationFunct(dm)) {
-      dms.putIfAbsent(symbol, () => dm);
-    }
-  });
-
-  return dms;
 }
 
 /// Get the list of public [MethodMirror] from [ClassMirror] [cm]
@@ -150,7 +152,13 @@ Map<String, DeclarationMirror> getPublicVariablesAndSettersFromClass(ClassMirror
 
 /// Get the list of public variables and setters from [ClassMirror] [cm]
 Map<String, DeclarationMirror> getPublicVariablesAndGettersFromClass(ClassMirror cm, Reflectable reflectable) =>
-    getDeclarationsFromClassIf(cm, reflectable, (dm) => !dm.isPrivate && dm is VariableMirror || dm is MethodMirror && dm.isGetter);
+    getDeclarationsFromClassIf(cm, reflectable, (dm) =>
+    !dm.isPrivate && dm is VariableMirror
+        || dm is MethodMirror
+          && dm.isGetter
+          && dm.simpleName != 'runtimeType'
+          && dm.simpleName != 'hashCode'
+    );
 
 /// Get the list of public variables [VariableMirror] from [ClassMirror] [cm]
 Map<String, VariableMirror> getPublicVariablesFromClass(ClassMirror cm, Reflectable reflectable) =>
