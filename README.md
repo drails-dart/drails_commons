@@ -1,6 +1,6 @@
 # Drails Commons
 
-[![Build Status](https://travis-ci.org/drails-dart/drails_commons.svg)
+![Build Status](https://travis-ci.org/drails-dart/drails_commons.svg)
 
 This library maintains common functions and variables useful for drails_di, dson and drails.
 
