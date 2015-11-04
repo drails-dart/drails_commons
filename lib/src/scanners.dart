@@ -165,6 +165,8 @@ Map<String, VariableMirror> getPublicVariablesFromClass(ClassMirror cm, Reflecta
     getDeclarationsFromClassIf(cm, reflectable, (dm) => !dm.isPrivate && dm is VariableMirror);
 
 /// Gets the object that extends the [injectableCm] from [declarationCms]
+///
+///
 Object getObjectThatExtend(ClassMirror injectableCm, Iterable<DeclarationMirror> declarationCms) {
   ClassMirror result;
   int counter = 0, counter2 = 0;
@@ -208,8 +210,12 @@ int _getExtensionLevel(ClassMirror injectableCm, ClassMirror declarationCm, int 
   }
 
   counter++;
-  if(!(declarationCm.superclass == injectableCm || declarationCm.superinterfaces.any((icm) => icm == injectableCm))) {
-    counter = _getExtensionLevel(injectableCm, declarationCm.superclass, counter);
+  try {
+    if(!(declarationCm.superinterfaces.any((icm) => icm == injectableCm) || declarationCm.superclass == injectableCm)) {
+      counter = _getExtensionLevel(injectableCm, declarationCm.superclass, counter);
+    }
+  } catch(e) {
+    return 0;
   }
 
   return counter;
