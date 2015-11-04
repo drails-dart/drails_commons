@@ -1,6 +1,6 @@
 # Drails Commons
 
-[![Build Status](https://drone.io/github.com/luisvt/drails_commons/status.png)](https://drone.io/github.com/luisvt/drails_commons/latest)
+[![Build Status](https://travis-ci.org/drails-dart/drails_commons.svg)
 
 This library maintains common functions and variables useful for drails_di, dson and drails.
 
