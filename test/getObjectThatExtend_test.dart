@@ -5,7 +5,7 @@ import 'package:drails_commons/drails_commons.dart';
 import "package:reflectable/reflectable.dart";
 
 
-const MyReflectable reflectable = const MyReflectable();
+const reflectable = const MyReflectable();
 
 class MyReflectable extends  Reflectable {
   const MyReflectable() : super(
