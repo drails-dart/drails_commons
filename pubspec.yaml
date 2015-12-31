@@ -6,7 +6,7 @@ homepage: https://github.com/luisvt/drails_commons
 environment:
   sdk: '>=1.8.0'
 dependencies:
-  reflectable: ^0.4.0
+  reflectable: ^0.5.1
 #  reflectable:
 #    path: ../reflectable/reflectable
 dev_dependencies:
