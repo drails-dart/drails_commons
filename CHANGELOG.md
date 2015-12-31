@@ -2,11 +2,23 @@
 
 * add more tests
 
-# Version 0.0.5+2
+# 0.0.6+3
+
+* Upgrage to `reflectable ^0.5.1`
+
+# 0.0.6+2
+
+* Upgrade to `reflectable ^0.4.0`
+
+# 0.0.6+1
+
+* correct `_getExtensionLevel` method to use `reflectable ^0.3.3` 
+
+# 0.0.5+2
 
 * extend version support of reflectable package
 
-# Version 0.0.4
+# 0.0.4
 
 * add GetValuesOfAnnotations
 * add tests for GetValuesOfAnnotations
