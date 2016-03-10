@@ -13,7 +13,7 @@ class GetValueOfAnnotation<T> {
 //  T fromInvocation(InvocationMirror im) => _fromAnnotations(ams)
 
   /// Get the Instance of the Annotation of type [T] from the list of annotations' [InstanceMirror]s
-  T _fromAnnotations(List<InstanceMirror> ams) {
+  T _fromAnnotations(List/*<InstanceMirror>*/ ams) {
     if (_iat.anyOf(ams))
       return ams.singleWhere(_iat._isType) as T;
     return null;
@@ -31,7 +31,7 @@ class GetValuesOfAnnotations<T> {
   Iterable<T> fromDeclaration(DeclarationMirror dm) => _fromAnnotations(dm.metadata);
 
   /// Get the list of values of the Annotation of type [T] from the list of annotations' [InstanceMirror]s
-  Iterable<T> _fromAnnotations(List<InstanceMirror> ams) {
+  Iterable<T> _fromAnnotations(List/*<InstanceMirror>*/ ams) {
     if (_iat.anyOf(ams))
       return ams.where(_iat._isType).map((im) => im as T);
     return null;

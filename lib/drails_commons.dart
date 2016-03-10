@@ -16,6 +16,9 @@ const SN_STRING = "String",
 /// Contains the simpleName "bool"
       SN_BOOL = "bool",
 
+/// Contains the simpleName "double"
+      SN_DOUBLE = "double",
+
 /// Contains the simpleName "List"
       SN_LIST = "List",
 

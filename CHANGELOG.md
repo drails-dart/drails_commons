@@ -2,6 +2,11 @@
 
 * add more tests
 
+# 0.0.7
+
+* add `SN_DOUBLE`
+* `_fromAnnotations` methods make it to use `List` instead of `List<InstanceMirror>`
+
 # 0.0.6+3
 
 * Upgrage to `reflectable ^0.5.1`
