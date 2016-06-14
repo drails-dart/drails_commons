@@ -5,12 +5,15 @@ class GetValueOfAnnotation<T> {
   /// This variable is useful to check if the annotation is on the declaration or class
   final _iat = new IsAnnotation<T>();
   ///  Get the Instance of the Annotation of type [T] from the reflected annotated object [im]
-  T fromInstance(InstanceMirror im) => _fromAnnotations(im.type.metadata);
+  T fromInstance(InstanceMirror im) => fromClass(im.type);
 
-  ///  Get the Instance of the Annotation of type [T] from the reflected annotated declaration (method or property) [obj]
+  ///  Get the Instance of the Annotation of type [T] from the reflected annotated object [im]
+  T fromClass(ClassMirror cm) => _fromAnnotations(cm.metadata);
+
+  ///  Get the Instance of the Annotation of type [T] from the declaration (method or property) [obj]
   T fromDeclaration(DeclarationMirror dm) => _fromAnnotations(dm.metadata);
 
-//  T fromInvocation(InvocationMirror im) => _fromAnnotations(ams)
+//  T fromInvocation(InvocationMirror im) => _fromAnnotations(im.metadata);
 
   /// Get the Instance of the Annotation of type [T] from the list of annotations' [InstanceMirror]s
   T _fromAnnotations(List/*<InstanceMirror>*/ ams) {
@@ -24,8 +27,12 @@ class GetValueOfAnnotation<T> {
 ///  Get list of Values of annotations of Type [T] on [InstanceMirror]s and [DeclarationMirror]s
 class GetValuesOfAnnotations<T> {
  final _iat = new IsAnnotation<T>();
+
   ///  Get the list of values of the Annotation of type [T] from the reflected annotated object [im]
- Iterable<T> fromInstance(InstanceMirror im) => _fromAnnotations(im.type.metadata);
+ Iterable<T> fromInstance(InstanceMirror im) => fromClass(im.type);
+
+ ///  Get the list of values of the Annotation of type [T] from the reflected annotated object [cm]
+ Iterable<T> fromClass(ClassMirror cm) => _fromAnnotations(cm.metadata);
 
   ///  Get the list of values of the Annotation of type [T] from the reflected annotated declaration (method or property) [obj]
   Iterable<T> fromDeclaration(DeclarationMirror dm) => _fromAnnotations(dm.metadata);
@@ -41,8 +48,11 @@ class GetValuesOfAnnotations<T> {
 ///  Check if Annotation is on [InstanceMirror] or [DeclarationMirror]
 class IsAnnotation<T> {
 
-  ///  Check if the Annotation of type [T] is on the reflected annotated object [im]
+  ///  Check if the Annotation of type [T] is on the object [im]
   bool onInstance(InstanceMirror im) => anyOf(im.type.metadata);
+
+  ///  Check if the Annotation of type [T] is on the class [cm]
+  bool onClass(ClassMirror cm) => anyOf(cm.metadata);
 
   ///  Check if the Annotation of type [T] is on the reflected annotated declaration (method or property) [dm]
   bool onDeclaration(DeclarationMirror dm) => anyOf(dm.metadata);
@@ -165,8 +175,6 @@ Map<String, VariableMirror> getPublicVariablesFromClass(ClassMirror cm, Reflecta
     getDeclarationsFromClassIf(cm, reflectable, (dm) => !dm.isPrivate && dm is VariableMirror);
 
 /// Gets the object that extends the [injectableCm] from [declarationCms]
-///
-///
 Object getObjectThatExtend(ClassMirror injectableCm, Iterable<DeclarationMirror> declarationCms) {
   ClassMirror result;
   int counter = 0, counter2 = 0;
